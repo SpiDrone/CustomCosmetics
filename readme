@@ -1,1 +1,43 @@
-deez nuts
+🎨 Custom Cosmetics - Creator GuideWelcome to the Custom Cosmetics creator guide! This tutorial will walk you through the process of adding your own custom 3D models and textures into the mod, and explain how to configure them using the server_cosmetics.json file.🛠️ Step 1: Adding Your AssetsBefore writing any configuration, you need to place your assets into a resource pack or directly into the mod's jar.Textures: Place your .png textures inside the assets/customcosmetics/textures/ folder (we recommend organizing them by type, e.g., /hats, /capes, /belts).Models (if using custom Java models): Make sure your .java exported models (from Blockbench) are compiled into the mod. If you are just using the base models (like standard capes or simple hats), you only need the textures!📝 Step 2: Configuring server_cosmetics.jsonThe heart of this mod is the server_cosmetics.json file. This file acts as the bridge between your textures, your models, and how they appear in the player's GUI.Here is a basic template for adding a new cosmetic.JSON"CategoryName": {
+  "my-custom-item-id": {
+    "isFree": "true",
+    "modelType": "humanoid",
+    "GuiAlignX": 0,
+    "GuiAlignY": 15,
+    "GuiScale": 1,
+    "GuiRotation": 1.4,
+    "GuiPitch": -1.0,
+    "disablePlayerPart": [0],
+    "Models": [
+      {
+        "location": "customcosmetics:textures/hats/my_cool_hat.png",
+        "model_location": "net.mcreator.customcosmetics.client.model.Modelhat"
+      }
+    ]
+  }
+}
+🧩 Understanding the VariablesCategoryName: The top-level group (e.g., "Hats", "Backpacks", "Belts").my-custom-item-id: The unique internal ID for your cosmetic.isFree: Set to "true" if players can use it without unlocking it.modelType: Usually "humanoid".  GUI Settings (GuiAlignX, GuiAlignY, GuiScale, GuiRotation, GuiPitch): These numbers adjust how the item is positioned and sized when previewed in the customization menu. You can edit these live and save the file to see updates in-game instantly!  Models Array: This holds the location of your texture ("location") and the Java path to your Blockbench model ("model_location").  🫥 Step 3: Hiding Player Body Parts (Optional)Sometimes your cosmetic completely covers a part of the player, and you want to turn off the vanilla body part to prevent ugly clipping (Z-fighting).You can do this by adding the "disablePlayerPart" array to your item's configuration.Example:If you made a massive heavy helmet, you might want to hide the player's head and their outer skin layer (Head Wear).JSON"disablePlayerPart": [0, 8]
+🗺️ Body Part Reference TableUse this table to find the correct index numbers for the "disablePlayerPart" array:IndexBody PartIndexBody Part0Head 6Right Leg 1Body 7Left Leg 2Right Arm 8Head Wear (Layer 2) 3Left Arm 9Body Wear (Layer 2) 4Right Arm Wear 10Right Leg Wear 5Left Arm Wear 11Left Leg Wear ✨ Step 4: Adding Trims (Optional)If your cosmetic supports multiple colors or "trims", you can define them in the JSON instead of making entirely new items. Trims require a base location in the model, and then define replacement textures in the "trims" array.JSON"my-trimmed-wings": {
+  "isFree": "true",
+  "Models": [
+    {
+      "location": "customcosmetics:textures/wings/base_wings.png",
+      "model_location": "net.mcreator.customcosmetics.client.model.ModelWings"
+    }
+  ],
+  "trims": [
+    {
+      "internalWings": {
+        "blue_trim": {
+          "isFree": true,
+          "location": "customcosmetics:textures/wings/trims/blue.png"
+        },
+        "red_trim": {
+          "isFree": true,
+          "location": "customcosmetics:textures/wings/trims/red.png"
+        }
+      }
+    }
+  ]
+}
+Tip: Thanks to our live cache-reloading system, you do not need to restart your game when tweaking values. Just hit Save in your text editor, and the changes will instantly apply to the game!
