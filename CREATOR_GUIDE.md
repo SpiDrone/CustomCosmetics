@@ -17,20 +17,19 @@
 
 ## 🛠️ Step 1: Adding Your Assets
 
-Before writing any configuration, place your assets into a resource pack or directly into the mod's `.jar`.
+Before writing any configuration, place your assets into a resource pack or into your addon mod.
 
-- **Textures** — Place `.png` files inside:
-  ```
-  assets/customcosmetics/textures/
-  ```
-  We recommend organizing by type, for example:
-  ```
-  textures/hats/
-  textures/capes/
-  textures/belts/
-  ```
 
-- **Models** — If using custom Java models exported from Blockbench, ensure they are compiled into the mod. If you are using base models (standard capes, simple hats), you only need the textures.
+- **Textures**  
+Textures can be added through just a resourcepack!
+Make sure to enable it in your modpack, try mods like resourcepackoverrides for a seemless experienece
+
+Some textures require a specific texture path, such as icons for categories/trims must be in the appropriate files
+Please download the Dragon Cosmetics resource pack for reference.
+https://modrinth.com/resourcepack/dragon-cosmetics
+
+- **Models**  
+Models can only be added through mods, not resourcepacks.  If using custom Java models exported from Blockbench, ensure they are compiled into the mod. If you are using base models (standard capes, simple hats), you only need the textures.
 
 ---
 
@@ -142,9 +141,9 @@ Each entry in `trims` maps a trim ID to a replacement texture path. The base mod
 
 ## ⚡ Tips & Live Reloading
 
-Thanks to the mod's built-in live cache-reloading system, you **do not need to restart your game** when tweaking `server_cosmetics.json` values.
+Thanks to the mod's built-in Semi-live cache-reloading system, you **do not need to restart your game** when tweaking `server_cosmetics.json` values.
 
-Just save the file in your text editor — changes apply instantly in-game.
+Just save the file in your text editor — and run the command /cosmetics server sendpackets
 
 This makes iterating on GUI alignment, scale, and rotation very fast. A recommended workflow:
 
@@ -155,4 +154,6 @@ This makes iterating on GUI alignment, scale, and rotation very fast. A recommen
 
 ---
 
-*For questions or contributions, open an issue or pull request in this repository.*
+*For questions or contributions, don't open an issue, join the MCreative Discord*
+https://discord.gg/XHNSGzMsXa
+
